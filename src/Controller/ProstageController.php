@@ -47,6 +47,15 @@ class ProstageController extends AbstractController
         ]);
     }
 
+/**
+     * @Route("/stages", name="prostage_listeStages")
+     */
+    public function listeStages()
+    {
+        return $this->render('prostage/listeStages.html.twig', [
+            'controller_name' => 'ProstageController',
+        ]);
+    }
 
 
 }

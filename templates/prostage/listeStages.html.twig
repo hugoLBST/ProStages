@@ -16,8 +16,8 @@
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
 			  <a class="nav-item nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-			  <a class="nav-item nav-link" href="/stages">Stages</a>
-			  <a class="nav-item nav-link active" href="/entreprises">Entreprises</a>
+			  <a class="nav-item nav-link active" href="/stages">Stages</a>
+			  <a class="nav-item nav-link" href="/entreprises">Entreprises</a>
 			  <a class="nav-item nav-link" href="/formations">Formations</a>
 			</div>
 		  </div>
@@ -25,13 +25,45 @@
 				
 			
 	
-</div>	
+	</div>		
 	
 {% endblock %}
 
-
 {% block contenu %}
 
-<h1>"Cette page affichera la liste des entreprises proposant un stage"</h1>
+<div class="container">
+ <div class="row">
+	<table class="table">
+	  <thead class="thead-dark">
+		<tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Nom</th>
+		  <th scope="col">Entreprise</th>
+		  <th scope="col">Formation</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr>
+		  <th scope="row">1</th>
+		  <td><a href="/stages/{idstage}">Assitant développeur web</a></td>
+		  <td>CapGemini</td>
+		  <td>DUTINFO/LPPROGAVANCEE</td>
+		</tr>
+		<tr>
+		  <th scope="row">2</th>
+		  <td><a href="/stages/{idstage}">Spécialiste de programme</a></td>
+		  <td>BoostMi</td>
+		  <td>DUTINFO</td>
+		</tr>
+		<tr>
+		  <th scope="row">3</th>
+		  <td><a href="/stages/{idstage}">Assistant assistant</a></td>
+		  <td>Macdo</td>
+		  <td>*</td>
+		</tr>
+	  </tbody>
+	</table>
+ </div>
+</div>
 
 {% endblock %}
