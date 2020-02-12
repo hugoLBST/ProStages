@@ -2,20 +2,18 @@
 
 {% block header %}
 
-<div class="container-sm">
+<div class="container-fluid">
+<div class="row">
 		
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <a class="navbar-brand" href="/">
 		     <img src="https://media.istockphoto.com/vectors/letter-p-icon-concept-vector-id845914336?k=6&m=845914336&s=612x612&w=0&h=GxVSfe9z0beRDg6VjHvm3RtLiBbGbP3jx-ap-IVDRXc=" width="30" height="30" class="d-inline-block align-top" alt="">
 			Prostages
 		  </a>
-			
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>
+	
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-			  <a class="nav-item nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+			  <a class="nav-item nav-link" href="/">Accueil</a>
 			  <a class="nav-item nav-link" href="/stages">Stages</a>
 			  <a class="nav-item nav-link active" href="/entreprises">Entreprises</a>
 			  <a class="nav-item nav-link" href="/formations">Formations</a>
@@ -23,7 +21,7 @@
 		  </div>
 		</nav>
 				
-			
+		</div>	
 	
 </div>	
 	
@@ -31,7 +29,55 @@
 
 
 {% block contenu %}
-
-<h1>"Cette page affichera la liste des entreprises proposant un stage"</h1>
-
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Nom
+						</th>
+						<th>
+							Activité
+						</th>
+						<th>
+							Adresse
+						</th>
+						<th>
+							Site
+						</th>
+					</tr>
+				</thead>
+				{% for entrepriseCourante in entreprises %}
+				<tbody>
+					<tr>
+						<td>
+							{{entrepriseCourante.id}}
+						</td>
+						<td>
+							{{entrepriseCourante.nom}}
+						</td>
+						<td>
+							{{entrepriseCourante.activite}}
+						</td>
+						<td>
+							{{entrepriseCourante.adresse}}
+						</td>
+						<td>
+							{{entrepriseCourante.site}}
+						</td>
+					</tr>
+					
+					
+				 {% endfor %}	
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
 {% endblock %}

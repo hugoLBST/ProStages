@@ -55,10 +55,16 @@ class AppFixtures extends Fixture
 
 
                 $stage->setEntreprise($entreprise);
+                
+                $nbF=$faker->randomElement($array=array(1,2,3));
+                $choixFormation=$faker->randomElements($tableauFormations,$nbF);
 
-                $choixFormation=$faker->randomElement($tableauFormations);
-                $stage->addFormation($choixFormation);
-                $choixFormation->addStage($stage);
+                foreach ($choixFormation as $forma) {
+                    $stage->addFormation($forma);
+                    $forma->addStage($stage);
+                }
+
+                
                 $entreprise->addStage($stage);
                 
                 $manager->persist($stage);
