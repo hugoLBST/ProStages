@@ -31,13 +31,12 @@ class ProstageController extends AbstractController
     }
 
      /**
-     * @Route("/formation{formation}/stages", name="prostage_stages_pour_formation")
+     * @Route("/formation{nomFormation}/stages", name="prostage_stages_pour_formation")
      */
-    public function stagesParFormation(StageRepository $repertoireStages, $formation)
+    public function stagesParFormation(StageRepository $repertoireStages, $nomFormation)
     {
-
-        $stages = $repertoireStages->findByFormation($formation);
-        return $this->render('prostage/listeStages.html.twig',['stages' => $stages]);
+        $stages = $repertoireStages->findByNomFormation($nomFormation);
+        return $this->render('prostage/listeStagesPar.html.twig',['stages' => $stages]);
     }
 
     /**
@@ -50,12 +49,12 @@ class ProstageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprise{entrep}/stages", name="prostage_stages_pour_entreprise")
+     * @Route("/entreprise{nomEntreprise}/stages", name="prostage_stages_pour_entreprise")
      */
-    public function stagesParEntreprise(StageRepository $repertoireStages,$entrep)
+    public function stagesParEntreprise(StageRepository $repertoireStages,$nomEntreprise)
     {
-        $stages = $repertoireStages->findByEntreprise($entrep);
-        return $this->render('prostage/listeStages.html.twig',['stages' => $stages]);
+        $stages = $repertoireStages->findByNomEntreprise($nomEntreprise);
+        return $this->render('prostage/listeStagesPar.html.twig',['stages' => $stages]);
     }
 
     /**
@@ -73,9 +72,8 @@ class ProstageController extends AbstractController
      */
     public function listeStages(StageRepository $repertoireStages)
     {
-
-        $stages = $repertoireStages->findAll();
-        return $this->render('prostage/listeStages.html.twig',['stages' => $stages]);
+        $stagesEntreprises = $repertoireStages->findAll();
+        return $this->render('prostage/listeStages.html.twig',['stagesEntreprises' => $stagesEntreprises]);
     }
 
 
