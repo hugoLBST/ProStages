@@ -13,6 +13,7 @@ use App\Repository\StageRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 class ProstageController extends AbstractController
 {
@@ -126,5 +127,29 @@ class ProstageController extends AbstractController
         ]);
     }
 
-}
 
+
+/**
+     * @Route("/ajouter-stage", name="prostage_nvStage")
+     */
+    public function newStage(Request $request, ObjectManager $entityManager)
+    {
+        $stage = new Stage();
+
+        $form = $this -> createForm(StageType::class,$stage);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $entityManager->persist($stage);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('prostage_listeStages');
+       }
+
+        return $this->render('prostage/ajouterStage.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+}

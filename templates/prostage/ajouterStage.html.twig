@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h1><center>
+				Ajouter un stage
+			</center></h1>
+		</div>
+	</div>
+
+	<div class="row">
+       <div class="col-md-3">
+       </div>
+        <div class="col-md-6">
+       
+	    <center>
+			<div class="card">
+		        <div class="card-body">
+				
+                        {{ form_start(form)}}
+                        <div class="form-group">
+                                        {{ form_label(form.titre,"Titre du stage") }}
+                                        {{ form_widget(form.titre) }}
+                        </div>
+
+                        <div class="form-group">
+                                {{ form_label(form.description,"Description du stage") }}
+                                {{ form_widget(form.description) }}
+                        </div>
+
+                        <div class="form-group">
+                                {{ form_label(form.mail,"Adresse mail de contact pour le stage") }}
+                                {{ form_widget(form.mail) }}
+                        </div>
+
+                        <div class="form-group">
+                                {{ form_label(form.entreprise,"Entreprise proposant le stage") }}
+                                {{ form_widget(form.entreprise) }}
+                        </div>
+
+                        <div class="form-group">
+                                {{ form_label(form.formation,"Formations liées au stage") }}
+                                {{ form_widget(form.formation) }}
+                        </div>
+
+                 {{ form_rest(form)}}
+                        <button class="btn btn-primary" type="submit" >Enregistrer le stage</button></center>
+			        </form>
+				</div>
+			</div>
+	{{ form_end(form)}}
+
+        
+
+	
+</div>
+ <div class="col-md-3">
+       </div>
+</div>
+
+
+{% endblock %}

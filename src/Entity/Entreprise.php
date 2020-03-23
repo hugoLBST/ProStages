@@ -38,7 +38,7 @@ class Entreprise
     /**
      * @ORM\Column(type="string", length=150)
      * @Assert\NotBlank(message="Le champ ne peut pas être vide")
-     * @Assert\Regex(pattern = "#^[1-9][0-9]{0,2}(bis| bis)? #", message = "Le numéro de voie est incorrect")
+     * @Assert\Regex(pattern = "#^[1-9][0-9]{0,2} (bis| bis)? #", message = "Le numéro de voie est incorrect")
      * @Assert\Regex(pattern = "# rue|boulevard|impasse|allée|place|route|voie|avenue #", message = "Le type de voie semble incorrect")
      * @Assert\Regex(pattern = "# [0-9]{5} #", message = "Le code postal est incorrect")
      */
