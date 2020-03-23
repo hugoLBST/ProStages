@@ -50,6 +50,9 @@
 						<th>
 							Site
 						</th>
+						<th>
+							Actions
+						</th>
 					</tr>
 				</thead>
 				{% for entrepriseCourante in entreprises %}
@@ -70,6 +73,9 @@
 						<td>
 							{{entrepriseCourante.site}}
 						</td>
+						<td>
+							<a href={{path ("prostage_modifierEntrep",{id: entrepriseCourante.id})}} class="btn btn-secondary">Modifier l'entreprise</a>
+						</td>
 					</tr>
 					
 					
@@ -77,6 +83,7 @@
 					
 				</tbody>
 			</table>
+			<center><a href={{path ("prostage_nvelleEntrep")}} class="btn btn-primary">Créer une entreprise</a></center>
 		</div>
 	</div>
 	</div>

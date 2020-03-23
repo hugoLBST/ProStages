@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h1><center>
+				Modifier une entreprise
+			</center></h1>
+		</div>
+	</div>
+
+
+        
+	<div class="row">
+       <div class="col-md-3">
+       </div>
+       <div class="col-md-6">
+       
+	    <center>
+			<div class="card">
+		        <div class="card-body">
+				
+                        {{ form_start(form, { 'attr' : {'novalidate':'novalidate'}})}}
+                        <div class="form-group">
+                                        {{ form_label(form.nom,"Nom de l'entreprise") }}
+                                        {{ form_widget(form.nom) }}
+                        </div>
+
+                        <div class="form-group">
+                                {{ form_label(form.activite,"Activité de l'entreprise") }}
+                                {{ form_widget(form.activite) }}
+                        </div>
+
+                        <div class="form-group">
+                                {{ form_label(form.adresse,"Adresse de l'entreprise") }}
+                                {{ form_widget(form.adresse) }}
+                        </div>
+
+                        <div class="form-group">
+                                {{ form_label(form.site,"Site internet de l'entreprise") }}
+                                {{ form_widget(form.site) }}
+                        </div>
+
+                {{ form_rest(form)}}
+                        <button class="btn btn-primary" type="submit" >Enregistrer les modifications</button></center>
+			        </form>
+				</div>
+			</div>
+                        
+	{{ form_end(form)}}
+
+        
+
+	</div>
+         <div class="col-md-3">
+       </div>
+
+</div>
+
+
+{% endblock %}

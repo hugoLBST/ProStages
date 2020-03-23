@@ -10,6 +10,10 @@ use App\Entity\Formation;
 use App\Repository\FormationRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\StageRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\EntrepriseType;
+
 class ProstageController extends AbstractController
 {
     /**
@@ -76,6 +80,51 @@ class ProstageController extends AbstractController
         return $this->render('prostage/listeStages.html.twig',['stagesEntreprises' => $stagesEntreprises]);
     }
 
+
+/**
+     * @Route("/creer-entreprise", name="prostage_nvelleEntrep")
+     */
+    public function newEntrep(Request $request, ObjectManager $entityManager)
+    {
+        $entreprise = new Entreprise();
+
+        $form = $this -> createForm(EntrepriseType::class,$entreprise);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $entityManager->persist($entreprise);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('prostage_entreprises');
+       }
+
+        return $this->render('prostage/creerEntreprise.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/modifier-entreprise{id}", name="prostage_modifierEntrep")
+     */
+    public function editEntrep(Request $request, Entreprise $entreprise, ObjectManager $entityManager)
+    {
+        $form = $this -> createForm(EntrepriseType::class,$entreprise);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($entreprise);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('prostage_entreprises');
+       }
+
+        return $this->render('prostage/modifierEntreprise.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 
 }
 
