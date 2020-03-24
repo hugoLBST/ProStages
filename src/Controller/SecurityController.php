@@ -45,16 +45,17 @@ class SecurityController extends AbstractController
     public function inscrire(Request $request, ObjectManager $entityManager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
-        $user->setRoles(["ROLE_USER"]);
-
-          //Encoder le mot de passe de l'utilisateur
-          $encodagePassword = $encoder->encodePassword($user, $user->getPassword());
-          $user->setPassword($encodagePassword);
+        
 
         $form = $this -> createForm(UserType::class,$user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(["ROLE_USER"]);
+
+          //Encoder le mot de passe de l'utilisateur
+          $encodagePassword = $encoder->encodePassword($user, $user->getPassword());
+          $user->setPassword($encodagePassword);
             
             $entityManager->persist($user);
             $entityManager->flush();

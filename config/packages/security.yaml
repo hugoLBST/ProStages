@@ -11,6 +11,7 @@ security:
             security: false
         main:
             anonymous: true
+            provider: app_user_provider
 
             http-basic: true
             guard:
