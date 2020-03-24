@@ -20,6 +20,30 @@
 			  <a class="nav-item nav-link" href="/formations">Formations</a>
 			</div>
 		  </div>
+
+		{% if is_granted('ROLE_USER') %}
+	<ul class="navbar-nav ml-md-auto">
+		<li class="nav-item">
+				<a class="nav-link" href="{{path('app_logout')}}"> 
+				{{app.user.prenom}}
+				{{app.user.nom}} 
+				Déconnexion 
+				</a>
+		</li>
+	</ul>
+{% else %}
+	<ul class="navbar-nav ml-md-auto">
+		<li class="nav-item active">
+				<a class="nav-link" href="{{path('app_inscription')}}"> Inscription	</a>
+		</li>
+
+<li class="nav-item active">
+				<a class="nav-link" href="{{path('app_login')}}"> Connexion	</a>
+		</li>
+	</ul>
+
+	{% endif %}
+
 		</nav>		
 			
 	  </div>
@@ -58,8 +82,9 @@
 	
 	  </tbody>
 	</table>
-	<center><a href={{path ("prostage_nvStage")}} class="btn btn-primary">Ajouter un stage</a></center>
+	
  </div>
+ <center><a href={{path ("prostage_nvStage")}} class="btn btn-primary">Ajouter un stage</a></center>
 </div>
 
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block contenu %}
+
+{{ form_start(form)}}
+{{ form_row(form.prenom, {'attr':{'placeholder':"Votre prénom"}})}}
+{{ form_row(form.nom, {'attr':{'placeholder':"Votre nom"}})}}
+{{ form_row(form.username, {'attr':{'placeholder':"Votre identifiant"}})}}
+{{ form_row(form.password, {'attr':{'placeholder':"Votre mot de passe"}})}}
+<button type="submit" class="btn btn-primary">S'inscrire</button>
+{{ form_end(form) }}
+
+{% endblock %}

@@ -6,6 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\UserType;
+use App\Entity\User;
 
 class SecurityController extends AbstractController
 {
@@ -31,6 +36,33 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+        return new RedirectResponse($this->urlGenerator->generate('prostage_accueil'));
     }
-}
+
+     /**
+     * @Route("/inscription", name="app_inscription")
+     */
+    public function inscrire(Request $request, ObjectManager $entityManager, UserPasswordEncoderInterface $encoder)
+    {
+        $user = new User();
+        $user->setRoles(["ROLE_USER"]);
+
+          //Encoder le mot de passe de l'utilisateur
+          $encodagePassword = $encoder->encodePassword($user, $user->getPassword());
+          $user->setPassword($encodagePassword);
+
+        $form = $this -> createForm(UserType::class,$user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_login');
+       }
+       return $this->render('security/inscription.html.twig',['form' => $form->createView()]);
+    }
+
+    }
+

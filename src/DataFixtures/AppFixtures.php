@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
         $hugo->setNom("labastie");
         $hugo->setPrenom("hugo");
         $hugo->setPassword('$2y$10$elIsoC3fFcq2LwtttlqfxeUSebcQks8yejCtokJAaSD57uLvgNwtq');
-        $hugo->setRoles(["ROLE_ADMIN"]);
+        $hugo->setRoles(["ROLE_ADMIN","ROLE_USER"]);
         $manager->persist($hugo);
 
         $dupond = new User();
